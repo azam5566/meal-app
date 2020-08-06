@@ -27,7 +27,6 @@ function Filters({ navigation }) {
         onLeftImagePressed={(e) => {
           handleLeftClick(navigation);
         }}
-        onRightImagePressed={() => {}}
       />
     </Screen>
   );

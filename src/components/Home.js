@@ -72,7 +72,6 @@ export default function Home({ navigation }) {
         rightImage='more-vertical'
         text='Meal App'
         onLeftImagePressed={() => {}}
-        onRightImagePressed={() => {}}
       />
       <FlatList
         data={users}

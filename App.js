@@ -1,4 +1,5 @@
 import React from 'react';
+import { MenuProvider } from 'react-native-popup-menu';
 
 import Home from './src/components/Home';
 import Favourite from './src/components/Favourite';
@@ -13,15 +14,17 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer independent={true}>
-      <Stack.Navigator
-        screenOptions={{ headerShown: false, gestureEnabled: false }}
-        headerMode='screen'
-      >
-        <Stack.Screen name='Dashboard' component={Dashboard} />
-        <Stack.Screen name='Home' component={Home} />
-        <Stack.Screen name='FoodList' component={FoodList} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <MenuProvider>
+      <NavigationContainer independent={true}>
+        <Stack.Navigator
+          screenOptions={{ headerShown: false, gestureEnabled: false }}
+          headerMode='screen'
+        >
+          <Stack.Screen name='Dashboard' component={Dashboard} />
+          <Stack.Screen name='Home' component={Home} />
+          <Stack.Screen name='FoodList' component={FoodList} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </MenuProvider>
   );
 }

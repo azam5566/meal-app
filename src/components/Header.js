@@ -3,12 +3,18 @@ import { StyleSheet, Text, View } from 'react-native';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
+
 export default function Header({
   leftImage,
   rightImage,
   text,
   onLeftImagePressed,
-  onRightImagePressed,
 }) {
   return (
     <View style={styles.header}>
@@ -22,15 +28,31 @@ export default function Header({
         </TouchableHighlight>
         <Text style={styles.logo__text}>{text}</Text>
       </View>
-      <Feather
-        name={rightImage}
-        size={24}
-        color='white'
-        style={styles.header__right}
-        onPress={(e) => {
-          onRightImagePressed(e);
-        }}
-      />
+
+      <Menu>
+        <MenuTrigger>
+          <Feather
+            name={rightImage}
+            size={24}
+            color='white'
+            style={styles.header__right}
+          />
+        </MenuTrigger>
+        <MenuOptions optionsContainerStyle={{ backgroundColor: '#3d0f01' }}>
+          <MenuOption onSelect={() => alert(`Delete`)}>
+            <Text
+              style={{
+                color: 'red',
+                fontSize: 20,
+                textAlign: 'center',
+                margin: 5,
+              }}
+            >
+              LogOut
+            </Text>
+          </MenuOption>
+        </MenuOptions>
+      </Menu>
     </View>
   );
 }

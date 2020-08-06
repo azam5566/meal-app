@@ -45,7 +45,6 @@ export default function Favourite({ navigation }) {
         onLeftImagePressed={(e) => {
           handleLeftClick();
         }}
-        onRightImagePressed={() => {}}
       />
       <FlatList
         data={users}
