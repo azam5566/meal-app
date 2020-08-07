@@ -43,7 +43,6 @@ export default function Favourite({ navigation }) {
     <Screen style={styles.container}>
       <StatusBar translucent={true} style='inverted' />
       <Header
-        leftImage='menu'
         rightImage='more-vertical'
         text='My Favourites'
         onLeftImagePressed={(e) => {
@@ -78,7 +77,7 @@ export default function Favourite({ navigation }) {
               width: 300,
               height: 300,
               position: 'absolute',
-              left: 15,
+              left: 25,
               top: 0,
             }}
             source={require('../../assets/tear.json')}

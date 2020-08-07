@@ -88,17 +88,20 @@ export default function Food({ navigation, route }) {
             marginTop: 20,
           }}
         >
-          <LottieView
-            autoPlay={true}
-            style={{
-              width: 50,
-              height: 50,
-              position: 'absolute',
-              left: 15,
-              top: 0,
-            }}
-            source={require('../../assets/bowl.json')}
-          />
+          {Platform.OS === 'ios' && (
+            <LottieView
+              autoPlay={true}
+              style={{
+                width: 50,
+                height: 50,
+                position: 'absolute',
+                left: 15,
+                top: 0,
+              }}
+              source={require('../../assets/bowl.json')}
+            />
+          )}
+
           <Text
             style={{
               fontSize: 24,
@@ -138,17 +141,20 @@ export default function Food({ navigation, route }) {
             marginBottom: 20,
           }}
         >
-          <LottieView
-            autoPlay={true}
-            style={{
-              width: 80,
-              height: 80,
-              position: 'absolute',
-              left: 15,
-              top: -5,
-            }}
-            source={require('../../assets/pan-food.json')}
-          />
+          {Platform.OS === 'ios' && (
+            <LottieView
+              autoPlay={true}
+              style={{
+                width: 80,
+                height: 80,
+                position: 'absolute',
+                left: 15,
+                top: -5,
+              }}
+              source={require('../../assets/pan-food.json')}
+            />
+          )}
+
           <Text
             style={{
               fontSize: 24,

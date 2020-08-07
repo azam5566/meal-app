@@ -11,6 +11,10 @@ export default function Home({ navigation }) {
   const categories = useSelector((store) => store.root.categories);
   const meals = useSelector((store) => store.root.meals);
 
+  function handleLeftClick() {
+    navigation.toggleDrawer();
+  }
+
   function handlePress(item) {
     var filtered_item = meals.filter((meal) =>
       meal.categoryIds.includes(item.id)
@@ -22,10 +26,12 @@ export default function Home({ navigation }) {
     <Screen style={styles.container}>
       <StatusBar translucent={true} style='inverted' />
       <Header
-        leftImage='food-fork-drink'
+        leftImage='menu'
         rightImage='more-vertical'
         text='Meal App'
-        onLeftImagePressed={() => {}}
+        onLeftImagePressed={(e) => {
+          handleLeftClick();
+        }}
       />
       <FlatList
         data={categories}

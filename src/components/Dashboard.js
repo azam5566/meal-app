@@ -27,7 +27,7 @@ function MyTabs() {
     >
       <Tab.Screen
         name='Feed'
-        component={Home}
+        component={DrawNav}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color }) => (
@@ -42,7 +42,7 @@ function MyTabs() {
       />
       <Tab.Screen
         name='Favourite'
-        component={DrawNav}
+        component={Favourite}
         options={{
           tabBarLabel: 'Favourite',
           tabBarIcon: ({ color }) => (

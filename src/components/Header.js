@@ -36,7 +36,7 @@ export default function Header({
               }}
               source={require('../../assets/food.json')}
             />
-          ) : (
+          ) : leftImage ? (
             <MaterialCommunityIcons
               name={leftImage}
               size={24}
@@ -46,6 +46,8 @@ export default function Header({
               }}
               color='white'
             />
+          ) : (
+            <></>
           )}
         </TouchableHighlight>
 
@@ -101,6 +103,6 @@ const styles = StyleSheet.create({
   logo__text: {
     color: 'white',
     fontSize: 20,
-    marginLeft: 10,
+    marginLeft: 20,
   },
 });
