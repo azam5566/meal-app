@@ -1,39 +1,23 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
-import {
-  Feather,
-  FontAwesome5,
-  FontAwesome,
-  AntDesign,
-} from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { color } from 'react-native-reanimated';
+import React from 'react';
+import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
-export default function Card({ item }) {
-  const [clicked, setClicked] = useState(false);
-
+export default function Card({ item, onCardPress }) {
   return (
-    <View style={styles.card__container}>
-      <ImageBackground
-        source={{ uri: item.image }}
-        style={{ height: 280 }}
-        resizeMode='cover'
-      >
-        <Text style={styles.card__text}>Biryani</Text>
-        <Text numberOfLines={1} style={styles.card__subtext}>
-          Lucknow Mutton Dum Biryani made with indian spicies
-        </Text>
-        <MaterialCommunityIcons
-          name='star'
-          color={clicked ? 'red' : '#171717'}
-          size={36}
-          style={styles.icon_container}
-          onPress={() => {
-            setClicked(!clicked);
-          }}
-        />
-      </ImageBackground>
-    </View>
+    <TouchableHighlight onPress={(e) => onCardPress(e)}>
+      <View style={styles.card__container}>
+        <ImageBackground
+          source={{ uri: item.imageUrl }}
+          style={{ height: 280 }}
+          loadingIndicatorSource={
+            <Text style={{ color: 'white' }}>Loading</Text>
+          }
+          resizeMode='cover'
+        >
+          <Text style={styles.card__text}>{item.title}</Text>
+        </ImageBackground>
+      </View>
+    </TouchableHighlight>
   );
 }
 
@@ -51,7 +35,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '700',
     position: 'absolute',
-    bottom: 32,
+    bottom: 12,
     left: 10,
   },
   card__subtext: {

@@ -22,8 +22,10 @@ export default function Card({ item, onPress }) {
       }}
       style={styles.card__container}
     >
-      <Text style={styles.text_style}>{item.name.substring(0, 1)}</Text>
-      <Text style={styles.text_subStyle}>{item.name}</Text>
+      <Text style={{ ...styles.text_style, color: item.color }}>
+        {item.title.substring(0, 1)}
+      </Text>
+      <Text style={styles.text_subStyle}>{item.title}</Text>
     </TouchableOpacity>
   );
 }
@@ -43,7 +45,6 @@ const styles = StyleSheet.create({
   },
   text_style: {
     fontSize: 70,
-    color: 'white',
     fontWeight: 'bold',
     justifyContent: 'center',
     alignSelf: 'center',

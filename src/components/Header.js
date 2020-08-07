@@ -3,6 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
+import LottieView from 'lottie-react-native';
+
 import {
   Menu,
   MenuOptions,
@@ -24,8 +26,29 @@ export default function Header({
             onLeftImagePressed(e);
           }}
         >
-          <MaterialCommunityIcons name={leftImage} size={24} color='white' />
+          {leftImage === 'food-fork-drink' ? (
+            <LottieView
+              autoPlay={true}
+              style={{
+                width: 50,
+                height: 50,
+                marginLeft: 3,
+              }}
+              source={require('../../assets/food.json')}
+            />
+          ) : (
+            <MaterialCommunityIcons
+              name={leftImage}
+              size={24}
+              style={{
+                marginLeft: 18,
+                marginRight: 8,
+              }}
+              color='white'
+            />
+          )}
         </TouchableHighlight>
+
         <Text style={styles.logo__text}>{text}</Text>
       </View>
 
@@ -72,7 +95,8 @@ const styles = StyleSheet.create({
   logo__wrapper: {
     display: 'flex',
     flexDirection: 'row',
-    marginLeft: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   logo__text: {
     color: 'white',

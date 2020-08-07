@@ -11,9 +11,10 @@ import Favourite from './Favourite';
 import Screen from './Screen';
 import Header from './Header';
 
+import LottieView from 'lottie-react-native';
+
 function handleLeftClick(navigation) {
   navigation.toggleDrawer();
-  console.log('helll');
 }
 
 function Filters({ navigation }) {
@@ -27,6 +28,17 @@ function Filters({ navigation }) {
         onLeftImagePressed={(e) => {
           handleLeftClick(navigation);
         }}
+      />
+
+      <LottieView
+        autoPlay={true}
+        style={{
+          width: 100,
+          height: 100,
+        }}
+        source={require('../../assets/food.json')}
+        // OR find more Lottie files @ https://lottiefiles.com/featured
+        // Just click the one you like, place that file in the 'assets' folder to the left, and replace the above 'require' statement
       />
     </Screen>
   );

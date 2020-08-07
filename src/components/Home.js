@@ -1,67 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Screen from './Screen';
 import CardMenu from './CardMenu';
 import Header from './Header';
 
 export default function Home({ navigation }) {
-  const users = [
-    {
-      id: 1,
-      name: 'Shaikh',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 2,
-      name: 'Mohammad',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 3,
-      name: 'Azam',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 4,
-      name: 'Azam',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 5,
-      name: 'Azam',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 56,
-      name: 'Azam',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 5654,
-      name: 'Azam',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 123,
-      name: 'Azam',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 23435,
-      name: 'Azam',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 3243,
-      name: 'Azam',
-      image: 'https://picsum.photos/200/300',
-    },
-  ];
+  const categories = useSelector((store) => store.root.categories);
+  const meals = useSelector((store) => store.root.meals);
 
   function handlePress(item) {
-    navigation.navigate('FoodList', item);
+    var filtered_item = meals.filter((meal) =>
+      meal.categoryIds.includes(item.id)
+    );
+    navigation.navigate('FoodList', filtered_item);
   }
 
   return (
@@ -74,7 +28,7 @@ export default function Home({ navigation }) {
         onLeftImagePressed={() => {}}
       />
       <FlatList
-        data={users}
+        data={categories}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <CardMenu
@@ -94,6 +48,7 @@ export default function Home({ navigation }) {
           paddingLeft: 14,
           paddingRight: 14,
           marginTop: 20,
+          paddingBottom: 50,
         }}
       />
     </Screen>

@@ -9,24 +9,7 @@ import Header from './Header';
 import Card from './Card';
 
 export default function FoodList({ navigation, route }) {
-  console.log(route.params);
-  const users = [
-    {
-      id: 1,
-      name: 'Shaikh',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 2,
-      name: 'Mohammad',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 3,
-      name: 'Azam',
-      image: 'https://picsum.photos/200/300',
-    },
-  ];
+  const foodList = route.params;
 
   return (
     <Screen style={styles.container}>
@@ -57,9 +40,14 @@ export default function FoodList({ navigation, route }) {
         <Text style={{ color: 'white', fontSize: 20 }}>Food List</Text>
       </View>
       <FlatList
-        data={users}
+        data={foodList}
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => <Card item={item} />}
+        renderItem={({ item }) => (
+          <Card
+            item={item}
+            onCardPress={() => navigation.navigate('Food', item)}
+          />
+        )}
         keyExtractor={(user) => user.id.toString()}
         numColumns={1}
       />
