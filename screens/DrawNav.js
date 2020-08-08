@@ -2,24 +2,20 @@ import * as React from 'react';
 import {
   View,
   Text,
-  Button,
   StatusBar,
   Switch,
   TouchableOpacity,
   Platform,
   FlatList,
+  StyleSheet,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
-  DrawerItem,
 } from '@react-navigation/drawer';
-import Favourite from './Favourite';
 import Screen from '../components/Screen';
 import Header from '../components/Header';
-import CardMenu from '../components/CardMenu';
 
 import LottieView from 'lottie-react-native';
 import Home from './Home';
@@ -37,36 +33,9 @@ function Filters({ navigation }) {
   const [isVegetarian, setIsVegetarian] = React.useState(false);
   const [isFiltered, setIsFiltered] = React.useState(true);
 
-  const categories = useSelector((store) => store.root.categories);
   const meals = useSelector((store) => store.root.meals);
 
   const [filteredMeal, setFilteredMeal] = React.useState([]);
-
-  const findDuplicates = (arr) => {
-    let sorted_arr = arr.slice().sort(); // You can define the comparing function here.
-    // JS by default uses a crappy string compare.
-    // (we use slice to clone the array so the
-    // original array won't be modified)
-    let results = [];
-    for (let i = 0; i < sorted_arr.length - 1; i++) {
-      if (sorted_arr[i + 1].id == sorted_arr[i].id) {
-        results.push(sorted_arr[i]);
-      }
-    }
-    return results;
-  };
-
-  function compare(arr1, arr2) {
-    let finalArr = [];
-    arr1.forEach((meal1) =>
-      arr2.forEach((meal2) => {
-        if (meal1.id === meal2.id) {
-          finalArr.push(meal1);
-        }
-      })
-    );
-    return finalArr;
-  }
 
   function filterItems() {
     setFilteredMeal([]);
@@ -104,7 +73,7 @@ function Filters({ navigation }) {
   return (
     <>
       {isFiltered ? (
-        <Screen style={{ flex: 1, backgroundColor: '#000' }}>
+        <Screen style={styles.container}>
           <StatusBar translucent={true} style='inverted' />
           <Header
             leftImage='menu'
@@ -114,18 +83,8 @@ function Filters({ navigation }) {
               handleLeftClick(navigation);
             }}
           />
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              paddingLeft: 30,
-              paddingRight: 30,
-              marginTop: 50,
-            }}
-          >
-            <Text style={{ color: 'white', fontSize: 20 }}>Gluten-Free</Text>
+          <View style={styles.switchWrapper}>
+            <Text style={styles.textStyle}>Gluten-Free</Text>
             <Switch
               trackColor={{ false: '#eaeaea', true: '#81b0ff' }}
               thumbColor={isGlutenFree ? '#f5dd4b' : '#f4f3f4'}
@@ -134,18 +93,8 @@ function Filters({ navigation }) {
               value={isGlutenFree}
             />
           </View>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              paddingLeft: 30,
-              paddingRight: 30,
-              marginTop: 30,
-            }}
-          >
-            <Text style={{ color: 'white', fontSize: 20 }}>Lactose-Free</Text>
+          <View style={styles.switchWrapper}>
+            <Text style={styles.textStyle}>Lactose-Free</Text>
             <Switch
               trackColor={{ false: '#eaeaea', true: '#81b0ff' }}
               thumbColor={isLactoseFree ? '#f5dd4b' : '#f4f3f4'}
@@ -154,18 +103,8 @@ function Filters({ navigation }) {
               value={isLactoseFree}
             />
           </View>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              paddingLeft: 30,
-              paddingRight: 30,
-              marginTop: 30,
-            }}
-          >
-            <Text style={{ color: 'white', fontSize: 20 }}>Vegan</Text>
+          <View style={styles.switchWrapper}>
+            <Text style={styles.textStyle}>Vegan</Text>
             <Switch
               trackColor={{ false: '#eaeaea', true: '#81b0ff' }}
               thumbColor={isVegan ? '#f5dd4b' : '#f4f3f4'}
@@ -174,18 +113,8 @@ function Filters({ navigation }) {
               value={isVegan}
             />
           </View>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              paddingLeft: 30,
-              paddingRight: 30,
-              marginTop: 30,
-            }}
-          >
-            <Text style={{ color: 'white', fontSize: 20 }}>Vegetarian</Text>
+          <View style={styles.switchWrapper}>
+            <Text style={styles.textStyle}>Vegetarian</Text>
             <Switch
               trackColor={{ false: '#eaeaea', true: '#81b0ff' }}
               thumbColor={isVegetarian ? '#f5dd4b' : '#f4f3f4'}
@@ -196,40 +125,22 @@ function Filters({ navigation }) {
           </View>
 
           <TouchableOpacity
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginLeft: 30,
-              marginRight: 30,
-              marginTop: 50,
-              paddingTop: 8,
-              paddingBottom: 8,
-              backgroundColor: '#0c3b22',
-              borderRadius: 5,
-            }}
+            style={styles.buttonWrapper}
             onPress={() => filterItems()}
           >
-            <Text style={{ color: '#16a156', fontSize: 20 }}>Filter Meal</Text>
+            <Text style={styles.grenBtnText}>Filter Meal</Text>
           </TouchableOpacity>
 
           {Platform.OS === 'ios' && (
             <LottieView
               autoPlay={true}
-              style={{
-                width: 200,
-                height: 200,
-                position: 'absolute',
-                bottom: 0,
-                alignSelf: 'center',
-              }}
+              style={styles.lottieWrapper}
               source={require('../assets/food.json')}
             />
           )}
         </Screen>
       ) : (
-        <Screen style={{ flex: 1, backgroundColor: '#000' }}>
+        <Screen style={styles.container}>
           <FlatList
             data={filteredMeal}
             showsVerticalScrollIndicator={false}
@@ -243,20 +154,7 @@ function Filters({ navigation }) {
             numColumns={1}
           />
           <TouchableOpacity
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginLeft: 14,
-              marginRight: 14,
-              marginTop: 10,
-              paddingTop: 8,
-              paddingBottom: 8,
-              backgroundColor: '#3d0f01',
-              borderRadius: 5,
-              marginBottom: 10,
-            }}
+            style={styles.redBtnWrapper}
             onPress={() => filterItems()}
           >
             <Text style={{ color: 'red', fontSize: 20 }}>Change Filters</Text>
@@ -293,6 +191,58 @@ function MyDrawer() {
     </Drawer.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#000',
+  },
+  switchWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingLeft: 30,
+    paddingRight: 30,
+    marginTop: 50,
+  },
+  textStyle: { color: 'white', fontSize: 20 },
+  buttonWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 30,
+    marginRight: 30,
+    marginTop: 50,
+    paddingTop: 8,
+    paddingBottom: 8,
+    backgroundColor: '#0c3b22',
+    borderRadius: 5,
+  },
+  grenBtnText: { color: '#16a156', fontSize: 20 },
+  lottieWrapper: {
+    width: 200,
+    height: 200,
+    position: 'absolute',
+    bottom: 0,
+    alignSelf: 'center',
+  },
+  redBtnWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 14,
+    marginRight: 14,
+    marginTop: 10,
+    paddingTop: 8,
+    paddingBottom: 8,
+    backgroundColor: '#3d0f01',
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+});
 
 export default function App() {
   return <MyDrawer />;

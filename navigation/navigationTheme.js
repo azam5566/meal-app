@@ -10,8 +10,8 @@ const navigationTheme = {
     primary: Colors.primary,
     text: Colors.primary,
     border: Colors.mediumGrey,
-    background: Colors.ghostWhite
-  }
+    background: Colors.ghostWhite,
+  },
 };
 
 export default navigationTheme;

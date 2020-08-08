@@ -8,7 +8,7 @@ export default function Card({ item, onCardPress }) {
       <View style={styles.card__container}>
         <ImageBackground
           source={{ uri: item.imageUrl }}
-          style={{ height: 280 }}
+          style={styles.imgHeight}
           loadingIndicatorSource={
             <Text style={{ color: 'white' }}>Loading</Text>
           }
@@ -57,4 +57,5 @@ const styles = StyleSheet.create({
     paddingStart: 16,
     paddingLeft: 16,
   },
+  imgHeight: { height: 280 },
 });

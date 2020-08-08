@@ -16,7 +16,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
     .label('Email')
     .email('Enter a valid email')
-    .required('Please enter a registered email')
+    .required('Please enter a registered email'),
 });
 
 export default function ForgotPasswordScreen({ navigation }) {
@@ -36,43 +36,51 @@ export default function ForgotPasswordScreen({ navigation }) {
   }
 
   return (
-    <SafeView style={styles.container}>
+    <KeyboardAwareScrollView
+      style={styles.container}
+      contentContainerStyle={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: Platform.OS === 'ios' ? 90 : 50,
+      }}
+    >
       <Form
         initialValues={{ email: '' }}
         validationSchema={validationSchema}
-        onSubmit={values => handlePasswordReset(values)}
+        onSubmit={(values) => handlePasswordReset(values)}
       >
         <FormField
-          name="email"
-          leftIcon="email"
-          placeholder="Enter email"
-          autoCapitalize="none"
-          keyboardType="email-address"
-          textContentType="emailAddress"
+          name='email'
+          leftIcon='email'
+          placeholder='Enter email'
+          autoCapitalize='none'
+          keyboardType='email-address'
+          textContentType='emailAddress'
           autoFocus={true}
         />
-        <FormButton title="Forgot Password" />
+        <FormButton title='Forgot Password' />
         {<FormErrorMessage error={customError} visible={true} />}
       </Form>
       <IconButton
         style={styles.backButton}
-        iconName="keyboard-backspace"
+        iconName='keyboard-backspace'
         color={Colors.white}
         size={30}
         onPress={() => navigation.goBack()}
       />
-    </SafeView>
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    backgroundColor: Colors.mediumGrey
+    backgroundColor: 'black',
+    paddingTop: 30,
   },
   backButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 10
-  }
+    marginVertical: 10,
+  },
 });

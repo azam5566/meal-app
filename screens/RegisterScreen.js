@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import * as Yup from 'yup';
 
 import Colors from '../utils/colors';
@@ -11,11 +11,10 @@ import IconButton from '../components/IconButton';
 import FormErrorMessage from '../components/Forms/FormErrorMessage';
 import { registerWithEmail } from '../components/Firebase/firebase';
 import useStatusBar from '../hooks/useStatusBar';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .required()
-    .label('Name'),
+  name: Yup.string().required().label('Name'),
   email: Yup.string()
     .required('Please enter a valid email')
     .email()
@@ -26,7 +25,7 @@ const validationSchema = Yup.object().shape({
     .label('Password'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password')], 'Confirm Password must match Password')
-    .required('Confirm Password is required')
+    .required('Confirm Password is required'),
 });
 
 export default function RegisterScreen({ navigation }) {
@@ -70,50 +69,57 @@ export default function RegisterScreen({ navigation }) {
   }
 
   return (
-    <SafeView style={styles.container}>
+    <KeyboardAwareScrollView
+      style={styles.container}
+      contentContainerStyle={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: Platform.OS === 'ios' ? 90 : 50,
+      }}
+    >
       <Form
         initialValues={{
           name: '',
           email: '',
           password: '',
-          confirmPassword: ''
+          confirmPassword: '',
         }}
         validationSchema={validationSchema}
-        onSubmit={values => handleOnSignUp(values)}
+        onSubmit={(values) => handleOnSignUp(values)}
       >
         <FormField
-          name="name"
-          leftIcon="account"
-          placeholder="Enter name"
+          name='name'
+          leftIcon='account'
+          placeholder='Enter name'
           autoFocus={true}
         />
         <FormField
-          name="email"
-          leftIcon="email"
-          placeholder="Enter email"
-          autoCapitalize="none"
-          keyboardType="email-address"
-          textContentType="emailAddress"
+          name='email'
+          leftIcon='email'
+          placeholder='Enter email'
+          autoCapitalize='none'
+          keyboardType='email-address'
+          textContentType='emailAddress'
         />
         <FormField
-          name="password"
-          leftIcon="lock"
-          placeholder="Enter password"
-          autoCapitalize="none"
+          name='password'
+          leftIcon='lock'
+          placeholder='Enter password'
+          autoCapitalize='none'
           autoCorrect={false}
           secureTextEntry={passwordVisibility}
-          textContentType="password"
+          textContentType='password'
           rightIcon={rightIcon}
           handlePasswordVisibility={handlePasswordVisibility}
         />
         <FormField
-          name="confirmPassword"
-          leftIcon="lock"
-          placeholder="Confirm password"
-          autoCapitalize="none"
+          name='confirmPassword'
+          leftIcon='lock'
+          placeholder='Confirm password'
+          autoCapitalize='none'
           autoCorrect={false}
           secureTextEntry={confirmPasswordVisibility}
-          textContentType="password"
+          textContentType='password'
           rightIcon={confirmPasswordIcon}
           handlePasswordVisibility={handleConfirmPasswordVisibility}
         />
@@ -122,23 +128,24 @@ export default function RegisterScreen({ navigation }) {
       </Form>
       <IconButton
         style={styles.backButton}
-        iconName="keyboard-backspace"
+        iconName='keyboard-backspace'
         color={Colors.white}
         size={30}
         onPress={() => navigation.goBack()}
       />
-    </SafeView>
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    backgroundColor: Colors.mediumGrey
+    backgroundColor: 'black',
   },
   backButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 10
-  }
+    marginVertical: 20,
+    marginBottom: 20,
+  },
 });

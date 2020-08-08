@@ -1,12 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 
 import Screen from '../components/Screen';
 import Header from '../components/Header';
 import Card from '../components/Card';
-import Home from './Home';
-import FoodList from './FoodList';
 import { useSelector } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
 
@@ -63,35 +61,13 @@ export default function Favourite({ navigation }) {
           numColumns={1}
         />
       ) : (
-        <View
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flex: 1,
-          }}
-        >
+        <View style={styles.lottieWrapper}>
           <LottieView
             autoPlay={true}
-            style={{
-              width: 300,
-              height: 300,
-              position: 'absolute',
-              left: 20,
-              top: 0,
-            }}
+            style={styles.lottieStyle}
             source={require('../assets/tear.json')}
           />
-          <Text
-            style={{
-              fontSize: 24,
-              color: 'white',
-              justifyContent: 'center',
-              alignSelf: 'center',
-            }}
-          >
-            No Favourite
-          </Text>
+          <Text style={styles.textStyle}>No Favourite</Text>
         </View>
       )}
     </Screen>
@@ -102,5 +78,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000',
+  },
+  lottieWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
+  lottieStyle: {
+    width: 300,
+    height: 300,
+    position: 'absolute',
+    left: 20,
+    top: 0,
+  },
+  textStyle: {
+    fontSize: 24,
+    color: 'white',
+    justifyContent: 'center',
+    alignSelf: 'center',
   },
 });

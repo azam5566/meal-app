@@ -42,21 +42,14 @@ export default function Header({
           {leftImage === 'food-fork-drink' ? (
             <LottieView
               autoPlay={true}
-              style={{
-                width: 50,
-                height: 50,
-                marginLeft: 3,
-              }}
+              style={styles.lottie}
               source={require('../assets/food.json')}
             />
           ) : leftImage ? (
             <MaterialCommunityIcons
               name={leftImage}
               size={24}
-              style={{
-                marginLeft: 18,
-                marginRight: 8,
-              }}
+              style={styles.leftIcon}
               color='white'
             />
           ) : (
@@ -78,16 +71,7 @@ export default function Header({
         </MenuTrigger>
         <MenuOptions optionsContainerStyle={{ backgroundColor: '#3d0f01' }}>
           <MenuOption onSelect={() => handleLogout()}>
-            <Text
-              style={{
-                color: 'red',
-                fontSize: 20,
-                textAlign: 'center',
-                margin: 5,
-              }}
-            >
-              LogOut
-            </Text>
+            <Text style={styles.logout}>LogOut</Text>
           </MenuOption>
         </MenuOptions>
       </Menu>
@@ -117,5 +101,20 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     marginLeft: 20,
+  },
+  lottie: {
+    width: 50,
+    height: 50,
+    marginLeft: 3,
+  },
+  leftImage: {
+    marginLeft: 18,
+    marginRight: 8,
+  },
+  logout: {
+    color: 'red',
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 5,
   },
 });

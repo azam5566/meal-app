@@ -11,6 +11,7 @@ import IconButton from '../components/IconButton';
 import { loginWithEmail } from '../components/Firebase/firebase';
 import FormErrorMessage from '../components/Forms/FormErrorMessage';
 import useStatusBar from '../hooks/useStatusBar';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -20,7 +21,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .required()
     .min(6, 'Password must have at least 6 characters')
-    .label('Password')
+    .label('Password'),
 });
 
 export default function LoginScreen({ navigation }) {
@@ -51,29 +52,36 @@ export default function LoginScreen({ navigation }) {
   }
 
   return (
-    <SafeView style={styles.container}>
+    <KeyboardAwareScrollView
+      style={styles.container}
+      contentContainerStyle={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: Platform.OS === 'ios' ? 90 : 50,
+      }}
+    >
       <Form
         initialValues={{ email: '', password: '' }}
         validationSchema={validationSchema}
-        onSubmit={values => handleOnLogin(values)}
+        onSubmit={(values) => handleOnLogin(values)}
       >
         <FormField
-          name="email"
-          leftIcon="email"
-          placeholder="Enter email"
-          autoCapitalize="none"
-          keyboardType="email-address"
-          textContentType="emailAddress"
+          name='email'
+          leftIcon='email'
+          placeholder='Enter email'
+          autoCapitalize='none'
+          keyboardType='email-address'
+          textContentType='emailAddress'
           autoFocus={true}
         />
         <FormField
-          name="password"
-          leftIcon="lock"
-          placeholder="Enter password"
-          autoCapitalize="none"
+          name='password'
+          leftIcon='lock'
+          placeholder='Enter password'
+          autoCapitalize='none'
           autoCorrect={false}
           secureTextEntry={passwordVisibility}
-          textContentType="password"
+          textContentType='password'
           rightIcon={rightIcon}
           handlePasswordVisibility={handlePasswordVisibility}
         />
@@ -87,32 +95,33 @@ export default function LoginScreen({ navigation }) {
       </View>
       <IconButton
         style={styles.backButton}
-        iconName="keyboard-backspace"
-        color="#fff"
+        iconName='keyboard-backspace'
+        color='#fff'
         size={30}
         onPress={() => navigation.goBack()}
       />
-    </SafeView>
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     padding: 15,
-    backgroundColor: Colors.mediumGrey
+    backgroundColor: 'black',
+    paddingTop: 30,
   },
   footerButtonContainer: {
     marginVertical: 15,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   forgotPasswordButtonText: {
     color: Colors.white,
     fontSize: 18,
-    fontWeight: '600'
+    fontWeight: '600',
   },
   backButton: {
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+  },
 });

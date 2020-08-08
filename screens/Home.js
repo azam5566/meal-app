@@ -11,22 +11,6 @@ export default function Home({ navigation }) {
   const categories = useSelector((store) => store.root.categories);
   const meals = useSelector((store) => store.root.meals);
 
-  // const filteredMeal = route.params ? route.params.filteredMeal : [];
-  // const filteredCategories = route.params
-  //   ? route.params.uniqueFilteredCategories
-  //   : [];
-
-  // var newCat = [];
-
-  // if (route.params) {
-  //   filteredCategories.map((it) => {
-  //     newCat = [
-  //       ...newCat,
-  //       ...categories.filter((category) => category.id.includes(it)),
-  //     ];
-  //   });
-  // }
-
   function handleLeftClick() {
     navigation.toggleDrawer();
   }
@@ -62,16 +46,8 @@ export default function Home({ navigation }) {
         )}
         keyExtractor={(user) => user.id.toString()}
         numColumns={2}
-        columnWrapperStyle={{
-          justifyContent: 'space-between',
-          marginTop: 20,
-        }}
-        contentContainerStyle={{
-          paddingLeft: 14,
-          paddingRight: 14,
-          marginTop: 20,
-          paddingBottom: 50,
-        }}
+        columnWrapperStyle={styles.columnStyle}
+        contentContainerStyle={styles.containerStyle}
       />
     </Screen>
   );
@@ -83,5 +59,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  columnStyle: {
+    justifyContent: 'space-between',
+    marginTop: 20,
+  },
+  containerStyle: {
+    paddingLeft: 14,
+    paddingRight: 14,
+    marginTop: 20,
+    paddingBottom: 50,
   },
 });
