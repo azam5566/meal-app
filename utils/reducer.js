@@ -6,12 +6,14 @@ export const SET_FAVOURITE = 'SET_FAVOURITE';
 export const SET_MEMBER_DETAILS = 'SET_MEMBER_DETAILS';
 export const LOGOUT = 'LOGOUT';
 export const LOGIN = 'LOGIN';
+export const DEMO = 'DEMO';
 
 const initialState = {
   isLoggedIn: false,
   categories: CATEGORIES,
   meals: MEALS,
   favourites: [],
+  isDemoDone: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,7 +33,13 @@ const reducer = (state = initialState, action) => {
     case LOGIN: {
       return {
         ...state,
-        isLoggedIn: false,
+        isLoggedIn: true,
+      };
+    }
+    case DEMO: {
+      return {
+        ...state,
+        isDemoDone: true,
       };
     }
     default: {

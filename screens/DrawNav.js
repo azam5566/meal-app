@@ -171,8 +171,19 @@ function CustomDrawerContent(props) {
       <DrawerItemList
         {...props}
         inactiveTintColor={'white'}
-        labelStyle={{ fontSize: 20 }}
-        itemStyle={{ justifyContent: 'center', alignItems: 'center' }}
+        labelStyle={{
+          fontSize: 20,
+          width: 100,
+          textAlign: 'auto',
+          paddingLeft: 20,
+        }}
+        itemStyle={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          display: 'flex',
+          width: '100%',
+          flexDirection: 'row',
+        }}
       />
     </DrawerContentScrollView>
   );

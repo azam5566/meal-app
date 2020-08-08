@@ -27,14 +27,13 @@ export default function AppTextInput({
         {...otherProps}
       />
       {rightIcon && (
-        <TouchableOpacity onPress={handlePasswordVisibility}>
-          <MaterialCommunityIcons
-            name={rightIcon}
-            size={20}
-            color={Colors.mediumGrey}
-            style={styles.rightIconStyles}
-          />
-        </TouchableOpacity>
+        <MaterialCommunityIcons
+          name={rightIcon}
+          size={20}
+          color={Colors.mediumGrey}
+          style={styles.rightIconStyles}
+          onPress={handlePasswordVisibility}
+        />
       )}
     </View>
   );
@@ -46,19 +45,19 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     flexDirection: 'row',
     padding: 15,
-    marginVertical: 10
+    marginVertical: 10,
+    alignItems: 'center',
   },
   icon: {
-    marginRight: 10
+    marginRight: 10,
   },
   input: {
-    width: '100%',
+    width: '80%',
     fontSize: 18,
-    color: Colors.black
+    color: Colors.black,
   },
   rightIconStyles: {
-    position: 'absolute',
-    right: 30,
-    alignSelf: 'center'
-  }
+    marginRight: 10,
+    marginLeft: 10,
+  },
 });

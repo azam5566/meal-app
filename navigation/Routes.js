@@ -32,7 +32,7 @@ export default function Routes() {
   }
 
   return (
-    <NavigationContainer theme={navigationTheme} independent={true}>
+    <NavigationContainer independent={true}>
       {user ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );

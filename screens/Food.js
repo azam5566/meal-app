@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { SET_FAVOURITE } from '../utils/reducer';
 import LottieView from 'lottie-react-native';
+import Demo from './Demo';
 
 export default function Food({ navigation, route }) {
   const food = route.params;
@@ -13,6 +14,7 @@ export default function Food({ navigation, route }) {
 
   const [isFavourite, setIsFavourite] = useState(false);
   var favourites = useSelector((store) => store.root.favourites);
+  const isDemoDone = useSelector((store) => store.root.isDemoDone);
 
   function handleFavourite() {
     if (favourites.includes(food.id)) {
@@ -32,65 +34,87 @@ export default function Food({ navigation, route }) {
   }, []);
 
   return (
-    <ScrollView style={styles.scrollView}>
-      <View style={styles.rootWrapper}>
-        <ImageBackground
-          source={{ uri: food.imageUrl }}
-          style={styles.imageBackgroundStyle}
-        >
-          <Ionicons
-            name='ios-arrow-back'
-            size={24}
-            onPress={(e) => {
-              navigation.goBack();
+    <>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.rootWrapper}>
+          <ImageBackground
+            source={{ uri: food.imageUrl }}
+            style={styles.imageBackgroundStyle}
+          >
+            <Ionicons
+              name='ios-arrow-back'
+              size={24}
+              onPress={(e) => {
+                navigation.goBack();
+              }}
+              color='white'
+              style={styles.backIconStyle}
+            />
+            <MaterialCommunityIcons
+              name='star'
+              color={isFavourite ? 'red' : 'rgba(255, 255, 255, 0.65)'}
+              size={36}
+              style={styles.favIconStyle}
+              onPress={() => handleFavourite()}
+            />
+          </ImageBackground>
+          <Text style={styles.title}>{food.title}</Text>
+
+          <View
+            style={{
+              display: 'flex',
+              backgroundColor: 'white',
+              marginLeft: 14,
+              marginRight: 14,
+              borderRadius: 10,
+              marginTop: 20,
             }}
-            color='white'
-            style={styles.backIconStyle}
-          />
-          <MaterialCommunityIcons
-            name='star'
-            color={isFavourite ? 'red' : 'rgba(255, 255, 255, 0.65)'}
-            size={36}
-            style={styles.favIconStyle}
-            onPress={() => handleFavourite()}
-          />
-        </ImageBackground>
-        <Text style={styles.title}>{food.title}</Text>
+          >
+            {Platform.OS === 'ios' && (
+              <LottieView
+                autoPlay={true}
+                style={styles.lottie}
+                source={require('../assets/bowl.json')}
+              />
+            )}
 
-        <View style={styles.cardWrapper}>
-          {Platform.OS === 'ios' && (
-            <LottieView
-              autoPlay={true}
-              style={styles.lottie}
-              source={require('../assets/bowl.json')}
-            />
-          )}
+            <Text style={styles.cardTitle}>Ingredients</Text>
+            {food.ingredients.map((ingd, index) => (
+              <Text style={styles.cardText} key={index}>
+                {ingd}
+              </Text>
+            ))}
+          </View>
+          <View
+            style={{
+              display: 'flex',
+              backgroundColor: 'white',
+              marginLeft: 14,
+              marginRight: 14,
+              borderRadius: 10,
+              marginTop: 20,
+              marginBottom: 20,
+            }}
+          >
+            {Platform.OS === 'ios' && (
+              <LottieView
+                autoPlay={true}
+                style={styles.lottiePan}
+                source={require('../assets/pan-food.json')}
+              />
+            )}
 
-          <Text style={styles.cardTitle}>Ingredients</Text>
-          {food.ingredients.map((ingd, index) => (
-            <Text style={styles.cardText} key={index}>
-              {ingd}
-            </Text>
-          ))}
+            <Text style={styles.cardTitle}>Steps</Text>
+            {food.steps.map((step, index) => (
+              <Text style={styles.cardText} key={index}>
+                {step}
+              </Text>
+            ))}
+          </View>
         </View>
-        <View style={styles.cardWrapper}>
-          {Platform.OS === 'ios' && (
-            <LottieView
-              autoPlay={true}
-              style={styles.lottiePan}
-              source={require('../assets/pan-food.json')}
-            />
-          )}
-
-          <Text style={styles.cardTitle}>Steps</Text>
-          {food.steps.map((step, index) => (
-            <Text style={styles.cardText} key={index}>
-              {step}
-            </Text>
-          ))}
-        </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+      {!isDemoDone && <Demo />}
+    </>
   );
 }
 
@@ -117,14 +141,6 @@ const styles = StyleSheet.create({
     paddingLeft: 14,
     paddingRight: 14,
     paddingTop: 18,
-  },
-  cardWrapper: {
-    display: 'flex',
-    backgroundColor: 'white',
-    marginLeft: 14,
-    marginRight: 14,
-    borderRadius: 10,
-    marginTop: 20,
   },
   lottie: {
     width: 50,

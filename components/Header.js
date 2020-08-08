@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     height: 50,
     marginLeft: 3,
   },
-  leftImage: {
+  leftIcon: {
     marginLeft: 18,
     marginRight: 8,
   },
