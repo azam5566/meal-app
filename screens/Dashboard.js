@@ -6,8 +6,6 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 
-import Header from './Header';
-import Home from './Home';
 import Favourite from './Favourite';
 import DrawNav from './DrawNav';
 

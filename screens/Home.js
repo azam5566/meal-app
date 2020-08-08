@@ -3,13 +3,29 @@ import React from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Screen from './Screen';
-import CardMenu from './CardMenu';
-import Header from './Header';
+import Screen from '../components/Screen';
+import CardMenu from '../components/CardMenu';
+import Header from './../components/Header';
 
 export default function Home({ navigation }) {
   const categories = useSelector((store) => store.root.categories);
   const meals = useSelector((store) => store.root.meals);
+
+  // const filteredMeal = route.params ? route.params.filteredMeal : [];
+  // const filteredCategories = route.params
+  //   ? route.params.uniqueFilteredCategories
+  //   : [];
+
+  // var newCat = [];
+
+  // if (route.params) {
+  //   filteredCategories.map((it) => {
+  //     newCat = [
+  //       ...newCat,
+  //       ...categories.filter((category) => category.id.includes(it)),
+  //     ];
+  //   });
+  // }
 
   function handleLeftClick() {
     navigation.toggleDrawer();

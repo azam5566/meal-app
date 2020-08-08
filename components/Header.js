@@ -11,6 +11,9 @@ import {
   MenuOption,
   MenuTrigger,
 } from 'react-native-popup-menu';
+import { logout } from '../components/Firebase/firebase';
+import { LOGOUT } from '../utils/reducer';
+import { useDispatch } from 'react-redux';
 
 export default function Header({
   leftImage,
@@ -18,6 +21,16 @@ export default function Header({
   text,
   onLeftImagePressed,
 }) {
+  const dispatch = useDispatch();
+
+  function handleLogout() {
+    // dispatch({
+    //   type: LOGOUT,
+    //   isLoggedIn: false,
+    // });
+    logout();
+  }
+
   return (
     <View style={styles.header}>
       <View style={styles.logo__wrapper}>
@@ -34,7 +47,7 @@ export default function Header({
                 height: 50,
                 marginLeft: 3,
               }}
-              source={require('../../assets/food.json')}
+              source={require('../assets/food.json')}
             />
           ) : leftImage ? (
             <MaterialCommunityIcons
@@ -64,7 +77,7 @@ export default function Header({
           />
         </MenuTrigger>
         <MenuOptions optionsContainerStyle={{ backgroundColor: '#3d0f01' }}>
-          <MenuOption onSelect={() => alert(`Delete`)}>
+          <MenuOption onSelect={() => handleLogout()}>
             <Text
               style={{
                 color: 'red',

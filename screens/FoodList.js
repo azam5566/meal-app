@@ -4,9 +4,9 @@ import { StyleSheet, View, Text, FlatList } from 'react-native';
 import Constants from 'expo-constants';
 import { Ionicons } from '@expo/vector-icons';
 
-import Screen from './Screen';
-import Header from './Header';
-import Card from './Card';
+import Screen from '../components/Screen';
+import Header from '../components/Header';
+import Card from '../components/Card';
 
 export default function FoodList({ navigation, route }) {
   const foodList = route.params;

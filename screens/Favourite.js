@@ -2,9 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState, useCallback } from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 
-import Screen from './Screen';
-import Header from './Header';
-import Card from './Card';
+import Screen from '../components/Screen';
+import Header from '../components/Header';
+import Card from '../components/Card';
 import Home from './Home';
 import FoodList from './FoodList';
 import { useSelector } from 'react-redux';
@@ -77,10 +77,10 @@ export default function Favourite({ navigation }) {
               width: 300,
               height: 300,
               position: 'absolute',
-              left: 25,
+              left: 20,
               top: 0,
             }}
-            source={require('../../assets/tear.json')}
+            source={require('../assets/tear.json')}
           />
           <Text
             style={{

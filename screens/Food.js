@@ -4,7 +4,7 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { SET_FAVOURITE } from './utils/reducer';
+import { SET_FAVOURITE } from '../utils/reducer';
 import LottieView from 'lottie-react-native';
 
 export default function Food({ navigation, route }) {
@@ -98,7 +98,7 @@ export default function Food({ navigation, route }) {
                 left: 15,
                 top: 0,
               }}
-              source={require('../../assets/bowl.json')}
+              source={require('../assets/bowl.json')}
             />
           )}
 
@@ -151,7 +151,7 @@ export default function Food({ navigation, route }) {
                 left: 15,
                 top: -5,
               }}
-              source={require('../../assets/pan-food.json')}
+              source={require('../assets/pan-food.json')}
             />
           )}
 
