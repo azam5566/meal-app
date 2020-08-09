@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector, useDispatch } from 'react-redux';
@@ -70,11 +70,16 @@ export default function Food({ navigation, route }) {
               marginTop: 20,
             }}
           >
-            {Platform.OS === 'ios' && (
+            {Platform.OS === 'ios' ? (
               <LottieView
                 autoPlay={true}
                 style={styles.lottie}
                 source={require('../assets/bowl.json')}
+              />
+            ) : (
+              <Image
+                source={require('../assets/bowl-static.png')}
+                style={styles.static1}
               />
             )}
 
@@ -96,11 +101,16 @@ export default function Food({ navigation, route }) {
               marginBottom: 20,
             }}
           >
-            {Platform.OS === 'ios' && (
+            {Platform.OS === 'ios' ? (
               <LottieView
                 autoPlay={true}
                 style={styles.lottiePan}
                 source={require('../assets/pan-food.json')}
+              />
+            ) : (
+              <Image
+                source={require('../assets/pan-static.png')}
+                style={styles.static2}
               />
             )}
 
@@ -148,6 +158,20 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 15,
     top: 0,
+  },
+  static1: {
+    width: 50,
+    height: 50,
+    position: 'absolute',
+    left: 55,
+    top: 4,
+  },
+  static2: {
+    width: 50,
+    height: 50,
+    position: 'absolute',
+    left: 66,
+    top: 6,
   },
   cardWrapper: {
     fontSize: 24,
