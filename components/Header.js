@@ -24,10 +24,9 @@ export default function Header({
   const dispatch = useDispatch();
 
   function handleLogout() {
-    // dispatch({
-    //   type: LOGOUT,
-    //   isLoggedIn: false,
-    // });
+    dispatch({
+      type: LOGOUT,
+    });
     logout();
   }
 

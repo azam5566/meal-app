@@ -42,17 +42,17 @@ export default function Food({ navigation, route }) {
             style={styles.imageBackgroundStyle}
           >
             <Ionicons
-              name='ios-arrow-back'
+              name='md-arrow-round-back'
               size={24}
               onPress={(e) => {
                 navigation.goBack();
               }}
-              color='white'
+              color='#64ed88'
               style={styles.backIconStyle}
             />
             <MaterialCommunityIcons
               name='star'
-              color={isFavourite ? 'red' : 'rgba(255, 255, 255, 0.65)'}
+              color={isFavourite ? 'red' : '#b5ffc8'}
               size={36}
               style={styles.favIconStyle}
               onPress={() => handleFavourite()}

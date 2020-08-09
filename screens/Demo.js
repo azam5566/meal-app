@@ -34,6 +34,34 @@ export default function Demo() {
             >
               <View
                 style={{
+                  width: 120,
+                  height: 120,
+                  position: 'absolute',
+                  top: 15,
+                  right: -25,
+                  borderRadius: 60,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderWidth: 2,
+                }}
+              />
+              <View
+                style={{
+                  width: 80,
+                  height: 80,
+                  position: 'absolute',
+                  top: 35,
+                  right: -5,
+                  borderRadius: 40,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderWidth: 3,
+                }}
+              />
+              <View
+                style={{
                   width: 50,
                   height: 50,
                   backgroundColor: 'black',
@@ -57,19 +85,19 @@ export default function Demo() {
                   fontSize: 36,
                   color: 'black',
                   fontWeight: '600',
-                  top: 120,
-                  right: -240,
+                  top: 140,
+                  left: 60,
                 }}
               >
                 Favourite,
               </Text>
               <Text
                 style={{
-                  fontSize: 36,
+                  fontSize: 24,
                   color: 'black',
                   fontWeight: '600',
-                  top: 120,
-                  left: 30,
+                  top: 140,
+                  left: 60,
                 }}
               >
                 mark meal as favourite.
@@ -82,7 +110,7 @@ export default function Demo() {
                   borderRadius: 40,
                   justifyContent: 'center',
                   alignItems: 'center',
-                  bottom: -650,
+                  bottom: -520,
                   right: -250,
                 }}
                 onPress={() => setFavDone(!favDone)}
@@ -111,6 +139,34 @@ export default function Demo() {
             >
               <View
                 style={{
+                  width: 120,
+                  height: 120,
+                  position: 'absolute',
+                  top: 15,
+                  left: -25,
+                  borderRadius: 60,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderWidth: 2,
+                }}
+              />
+              <View
+                style={{
+                  width: 80,
+                  height: 80,
+                  position: 'absolute',
+                  top: 35,
+                  left: -5,
+                  borderRadius: 40,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  borderWidth: 3,
+                }}
+              />
+              <View
+                style={{
                   width: 50,
                   height: 50,
                   backgroundColor: 'black',
@@ -133,19 +189,19 @@ export default function Demo() {
                   fontSize: 36,
                   color: 'black',
                   fontWeight: '600',
-                  top: 120,
-                  left: 30,
+                  top: 140,
+                  left: 60,
                 }}
               >
                 Go Back,
               </Text>
               <Text
                 style={{
-                  fontSize: 36,
+                  fontSize: 24,
                   color: 'black',
                   fontWeight: '600',
-                  top: 120,
-                  left: 30,
+                  top: 140,
+                  left: 60,
                 }}
               >
                 to previous screen.
@@ -158,7 +214,7 @@ export default function Demo() {
                   borderRadius: 40,
                   justifyContent: 'center',
                   alignItems: 'center',
-                  bottom: -650,
+                  bottom: -520,
                   right: -250,
                 }}
                 onPress={() => handleAlldone()}

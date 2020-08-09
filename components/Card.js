@@ -31,12 +31,13 @@ const styles = StyleSheet.create({
     margin: 18,
   },
   card__text: {
-    color: 'white',
+    color: '#e9f7ef',
     fontSize: 28,
     fontWeight: '700',
     position: 'absolute',
     bottom: 12,
     left: 10,
+    right: 10,
   },
   card__subtext: {
     color: 'white',
